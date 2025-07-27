@@ -38,7 +38,7 @@ val_dataloader = DataLoader(val_dataset, batch_size=8, shuffle=False)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model = MultimodalClassifier(768, 768, len(train_dataset.classes), weight, 'train').to(device)
 
-criterion = nn.BCEWithLogitsLoss()
+criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=1e-4)
 scheduler = ReduceLROnPlateau(optimizer, mode = 'min', factor = 0.5, patience = 2)
 
